@@ -1,0 +1,29 @@
+/*
+    协议定义。golang语法，三分钟就能学会
+*/
+
+// 必须包含一个包名
+package test
+
+// s1, 1
+// s1, 2
+type s1 struct {
+    // 注释i 1
+	i int `json:"123" xml:"456" init:"10" json:"1234"`   // 注释i 2，初始值为10
+	i2 int  // 注释i2 1
+	i3, i4 int  // 注释i3 1, i4, 1
+}
+
+// s2
+type s2 struct {
+	j int   // 注释2
+}
+
+type FPlayerSmoothFrameLocation struct {
+    Id int  // 必须
+    Time float
+    CameraLoc FVector
+    CameraRot FRotator
+    WeaponLoc FVector
+    WeaponRot FRotator
+}
