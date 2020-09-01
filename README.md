@@ -34,3 +34,8 @@
 - {{NewLine}}  新的一样
 - {{NIL}} 空
 - {{Tab}} tab
+- {{ToUpper}} 转化成**大写**，调用方式为 {{ToUpper .Name}}
+- {{StripWord}} **裁减掉N个字母**，调用方式为 {{StripWord .Name 1}}
+- {{ToSnake}} 转化成**Snake格式**（如：any_kind_of_string），调用方式为 {{ToSnake .Name}}
+- {{ToCamel}} 转化成**Camel格式**（如：AnyKindOfString），调用方式为 {{ToCamel .Name}}
+- {{ToLowerCamel}} 转化成**LowerCamel格式**（如：anyKindOfString），调用方式为 {{ToLowerCamel .Name}}
