@@ -19,9 +19,9 @@ inline bool IsRepEqual<{{.Name}}>(const {{.Name}}& A, const {{.Name}}& B)
 {{- else -}}
     {{- Tab}}return {{NIL -}}
     {{- range $index, $element := .MemberList -}}
-        {{-  if eq $index 2 }}IsRepEqual(A.$element, B.$element){{end -}}
+        {{-  if eq $index 2 }}IsRepEqual(A.{{$element.VariableName}}, B.{{$element.VariableName}}){{end -}}
         {{-  if gt $index 2  -}}
-            {{NewLine}}{{Tab}}{{Tab}}&& IsRepEqual(A.$element, B.$element){{NIL -}}
+            {{NewLine}}{{Tab}}{{Tab}}&& IsRepEqual(A.{{$element.VariableName}}, B.{{$element.VariableName}}){{NIL -}}
         {{- end -}}
      {{- end -}};
 {{- end -}}
@@ -46,7 +46,7 @@ public:
 	{{.Name}} OldLocal_{{.Name}};
 	FAutonomousBatchRep<{{.Name}}, {{.Name}}List, UPlayerSmoothMoveComponent> BatRep{{.Name}};
 	void OnBatchRepDirty(const {{.Name}}& Data);
-	void OnBatchRep(const {{.Name}}& Data)
+	void OnBatchRep(const {{.Name}}List& Data)
 	{
 		ServerRepCached_{{.Name}}(Data);
 	}
@@ -71,18 +71,18 @@ void UPlayerSmoothMoveComponent::ServerRepCached_{{.Name}}_Implementation(const 
 }
 void UPlayerSmoothMoveComponent::MultiRepCached_{{.Name}}_Implementation(const {{.Name}}List& ListData)
 {
-	Bat_{{.Name}}.OnRecv(ListData);
+	BatRep{{.Name}}.OnRecv(ListData);
 }
 void UPlayerSmoothMoveComponent::ReqRep_{{.Name}}(const {{.Name}}& Data)
 {
 	auto One = Data;
-	Bat_{{.Name}}.AddOne(One);
+	BatRep{{.Name}}.AddOne(One);
 }
 void UPlayerSmoothMoveComponent::OnBatchRepDirty(const {{.Name}}& Data)
 {
 	bValid_{{.Name}} = true;
 	Local_{{.Name}} = Data;
-	OnRep_{{.Name}}.Broadcast();
+	OnRepAction_{{.Name}}.Broadcast();
 }
 void TestFunction(const {{.Name}}& Data)
 {

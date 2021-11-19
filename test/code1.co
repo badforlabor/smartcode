@@ -27,3 +27,23 @@ type FPlayerSmoothFrameLocation struct {
     WeaponLoc FVector
     WeaponRot FRotator
 }
+
+
+type FPlayerSmoothCombineFrame struct {
+    Id int  // 必须
+    Time float
+    CameraLoc FVector
+    CameraRot FRotator
+    WeaponLoc FVector
+    WeaponRot FRotator
+    LeftHandLoc FVector
+    LeftHandRot FRotator	
+	RelativeZ float
+	CorrectedRep FVector
+	SKRotation FRotator
+	AimPitchRep float
+	AimYawRep float
+	bMovingRep bool
+	bRotationRep bool
+	bRotationLRRep bool
+}
